@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>close.png</file>
+        <file>close-hover.png</file>
+        <file>close-pressed.png</file>
+        <file>key.ico</file>
+        <file>key.png</file>
+        <file>setting.png</file>
+    </qresource>
+</RCC>

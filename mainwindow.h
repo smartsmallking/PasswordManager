@@ -20,6 +20,8 @@ public:
 
     void shake();
 
+    void appAutoRun(bool bAutoRun);
+
 
 private slots:
     void on_lineEdit_textChanged(const QString &arg1);

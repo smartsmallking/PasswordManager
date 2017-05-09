@@ -50,7 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->stackedWidget->setCurrentIndex(1);
         d->isTrayIconShow=true;
     }
-
+    appAutoRun(true);
 }
 
 MainWindow::~MainWindow()
@@ -161,4 +161,19 @@ void MainWindow::on_pushButton_clicked()
         qDebug()<<"password不一致";
     }
 
+}
+void MainWindow::appAutoRun(bool bAutoRun)
+{
+    //HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+    QSettings  reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",QSettings::NativeFormat);
+
+    if (bAutoRun)
+    {
+        QString strAppPath=QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
+        reg.setValue("密码管理器",strAppPath);
+    }
+    else
+    {
+        reg.setValue("密码管理器","");
+    }
 }

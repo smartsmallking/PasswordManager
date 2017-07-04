@@ -30,3 +30,5 @@ RESOURCES += \
     image.qrc
 
 RC_ICONS =key.ico
+
+RC_FILE+= adminis.rc

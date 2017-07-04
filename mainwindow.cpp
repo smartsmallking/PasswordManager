@@ -4,6 +4,7 @@
 #include "QSettings"
 #include "QDir"
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -166,7 +167,6 @@ void MainWindow::appAutoRun(bool bAutoRun)
 {
     //HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
     QSettings  reg("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",QSettings::NativeFormat);
-
     if (bAutoRun)
     {
         QString strAppPath=QDir::toNativeSeparators(QCoreApplication::applicationFilePath());

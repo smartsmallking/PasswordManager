@@ -17,13 +17,13 @@ CXXFLAGS      = -pipe -fno-keep-inline-dllexport -O2 -std=gnu++11 -frtti -Wall -
 INCPATH       = -I. -ID:\Qt\Qt5.8.0\5.8\mingw53_32\include -ID:\Qt\Qt5.8.0\5.8\mingw53_32\include\QtWidgets -ID:\Qt\Qt5.8.0\5.8\mingw53_32\include\QtGui -ID:\Qt\Qt5.8.0\5.8\mingw53_32\include\QtANGLE -ID:\Qt\Qt5.8.0\5.8\mingw53_32\include\QtSql -ID:\Qt\Qt5.8.0\5.8\mingw53_32\include\QtCore -Irelease -I. -ID:\Qt\Qt5.8.0\5.8\mingw53_32\mkspecs\win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        -lmingw32 -LD:\Qt\Qt5.8.0\5.8\mingw53_32\lib D:\Qt\Qt5.8.0\5.8\mingw53_32\lib\libqtmain.a -LC:\utils\my_sql\my_sql\lib -LC:\utils\postgresql\pgsql\lib -lshell32 D:\Qt\Qt5.8.0\5.8\mingw53_32\lib\libQt5Widgets.a D:\Qt\Qt5.8.0\5.8\mingw53_32\lib\libQt5Gui.a D:\Qt\Qt5.8.0\5.8\mingw53_32\lib\libQt5Sql.a D:\Qt\Qt5.8.0\5.8\mingw53_32\lib\libQt5Core.a release\PasswordManager_resource_res.o 
+LIBS        =        -lmingw32 -LD:\Qt\Qt5.8.0\5.8\mingw53_32\lib D:\Qt\Qt5.8.0\5.8\mingw53_32\lib\libqtmain.a -LC:\utils\my_sql\my_sql\lib -LC:\utils\postgresql\pgsql\lib -lshell32 D:\Qt\Qt5.8.0\5.8\mingw53_32\lib\libQt5Widgets.a D:\Qt\Qt5.8.0\5.8\mingw53_32\lib\libQt5Gui.a D:\Qt\Qt5.8.0\5.8\mingw53_32\lib\libQt5Sql.a D:\Qt\Qt5.8.0\5.8\mingw53_32\lib\libQt5Core.a release\adminis_res.o 
 QMAKE         = D:\Qt\Qt5.8.0\5.8\mingw53_32\bin\qmake.exe
 IDC           = idc
 IDL           = midl
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = release\PasswordManager_resource_res.o
+RES_FILE      = release\adminis_res.o
 COPY          = copy /y
 SED           = $(QMAKE) -install sed
 COPY_FILE     = copy /y
@@ -69,11 +69,11 @@ DESTDIR_TARGET = release\PasswordManager.exe
 first: all
 all: Makefile.Release  $(DESTDIR_TARGET)
 
-$(DESTDIR_TARGET): ui_mainwindow.h ui_database.h $(OBJECTS) release/PasswordManager_resource_res.o
+$(DESTDIR_TARGET): ui_mainwindow.h ui_database.h $(OBJECTS) release/adminis_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) $(OBJECTS)  $(LIBS)
 
-release/PasswordManager_resource_res.o: PasswordManager_resource.rc
-	windres -i PasswordManager_resource.rc -o release\PasswordManager_resource_res.o --include-dir=. $(DEFINES)
+release/adminis_res.o: adminis.rc
+	windres -i adminis.rc -o release\adminis_res.o --include-dir=. $(DEFINES)
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Release PasswordManager.pro -spec win32-g++
@@ -85,7 +85,7 @@ dist:
 
 clean: compiler_clean 
 	-$(DEL_FILE) release\main.o release\mainwindow.o release\database.o release\qrc_image.o release\moc_mainwindow.o release\moc_database.o
-	-$(DEL_FILE) release\PasswordManager_resource_res.o
+	-$(DEL_FILE) release\adminis_res.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -758,6 +758,38 @@ release/mainwindow.o: mainwindow.cpp mainwindow.h \
 		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/qtimer.h \
 		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/qbasictimer.h \
 		ui_mainwindow.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QStackedWidget \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstackedwidget.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QToolButton \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtoolbutton.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QWidget \
 		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/QDebug \
 		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/QSettings \
 		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/qsettings.h \
@@ -909,6 +941,41 @@ release/database.o: database.cpp database.h \
 		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/qtimer.h \
 		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/qbasictimer.h \
 		ui_database.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/QVariant \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QAction \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QApplication \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qapplication.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/qcoreapplication.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/qeventloop.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qguiapplication.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qinputmethod.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QButtonGroup \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QGroupBox \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qgroupbox.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QHeaderView \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qheaderview.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyleoption.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtGui/qvalidator.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/qregularexpression.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qslider.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qabstractslider.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstyle.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtabbar.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qrubberband.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QStackedWidget \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qstackedwidget.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QTableWidget \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtablewidget.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/qtableview.h \
+		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtWidgets/QWidget \
 		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtCore/QDebug \
 		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtSql/QSqlError \
 		D:/Qt/Qt5.8.0/5.8/mingw53_32/include/QtSql/qsqlerror.h \
